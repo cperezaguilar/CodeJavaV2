@@ -24,6 +24,6 @@ public class HelloController {
 
     @RequestMapping("/procesa")
     String procesa() {
-        return "Procesado!";
+        return "Procesado Terminado!";
     }
 }
