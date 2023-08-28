@@ -18,7 +18,7 @@ public class HelloController {
                         "Base64 Encoder:        ${base64Encoder:HelloWorld!}\n");
 
         logger.info(text);
-        logger.info("Dentro de la app");
+        logger.info("Dentro de la app maintest");
         return "Hello World!";
     }
 
