@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
     Logger logger = LogManager.getLogger(HelloController.class);
+    
     @RequestMapping("/")
-    String hellow()
-    {
+    String hellow() {
         StringSubstitutor interpolator = StringSubstitutor.createInterpolator();
         String text = interpolator.replace(
                 "Base64 Decoder:        ${base64Decoder:SGVsbG9Xb3JsZCE=}\n" +
@@ -20,5 +20,10 @@ public class HelloController {
         logger.info(text);
         logger.info("Dentro de la app");
         return "Hello World!";
+    }
+
+    @RequestMapping("/procesa")
+    String procesa() {
+        return "Procesado!";
     }
 }
