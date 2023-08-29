@@ -15,7 +15,7 @@ public class HelloController {
         StringSubstitutor interpolator = StringSubstitutor.createInterpolator();
         String text = interpolator.replace(
                 "Base64 Decoder:        ${base64Decoder:SGVsbG9Xb3JsZCE=}\n" +
-                        "Base64 Encoder:        ${base64Encoder:HelloWorld!}\n"
+                        "Base64 Encoder:        ${base64Encoder:HelloWorld!}\n");
 
         logger.info(text);
         logger.info("Dentro de la app maintest");
