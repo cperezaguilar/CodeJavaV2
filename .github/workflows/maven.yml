@@ -42,7 +42,7 @@ jobs:
   deployment:
     runs-on: ubuntu-latest
     steps:
-      - name : 'Deployment prod'
+      - name : Deployment prod
       - run: echo "Nice to meet you!"
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     #- name: Update dependency graph
