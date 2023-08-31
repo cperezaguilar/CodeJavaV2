@@ -1,10 +1,14 @@
 package com.ventus.cobro.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ventus.cobro.model.Car;
 import org.apache.commons.text.StringSubstitutor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.File;
 
 @RestController
 public class HelloController {
@@ -34,6 +38,15 @@ public class HelloController {
 
     @RequestMapping("/getVersion")
     String getVersion() {
+    try {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Car car = new Car("yellow", "renault");
+        objectMapper.writeValue(new File("target/car.json"), car);
+        String carAsString = objectMapper.writeValueAsString(car);
+        System.out.println(carAsString);
+    } catch (Exception e) {
+        System.out.println("termino");
+    }
         return "version 1.2.3";
     }
 }
