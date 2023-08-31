@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ventus</groupId>
 	<artifactId>CobroJava</artifactId>
-	<version>1.0</version>
+	<version>5.2</version>
 	<distributionManagement>
 	  <repository>
 	    <id>nexus</id>
