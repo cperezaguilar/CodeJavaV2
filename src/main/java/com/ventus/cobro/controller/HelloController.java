@@ -26,4 +26,14 @@ public class HelloController {
     String procesa() {
         return "Procesado Terminado test version 2!";
     }
+
+    @RequestMapping("/getStatus")
+    String getStatus() {
+        return "success";
+    }
+
+    @RequestMapping("/getVersion")
+    String getVersion() {
+        return "version 1.2.3";
+    }
 }
