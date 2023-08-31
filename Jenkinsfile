@@ -12,6 +12,13 @@ pipeline {
         NEXUS_CREDENTIAL_ID = "Nexus"
     }
     stages {
+        stage("Clone code from GitHub") {
+            steps {
+                script {
+                    git branch: 'feature/release0001', url: 'https://github.com/Ventus-Technology/CobroJava';
+                }
+            }
+        }
         stage('Maven Build') {
             steps {
                 sh 'mvn clean package -DskipTests=true'              
