@@ -31,4 +31,9 @@ public class HelloController {
     String getStatus() {
         return "success";
     }
+
+    @RequestMapping("/getVersion")
+    String getVersion() {
+        return "version 1.2.3";
+    }
 }
