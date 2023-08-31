@@ -6,8 +6,8 @@ pipeline {
     }
     stages {
         stage('build') {
-            steps {
-                sh 'mvn crean install'              
+            withMaven(maven: 'mvn') {
+                sh "mvn clean package"
             }
         }
     }
