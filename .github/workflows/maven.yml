@@ -34,10 +34,10 @@ jobs:
     - name: "Trigger jenkins job"
       uses: GoldenspearLLC/build-jenkins-job@master
       with:
-          jenkins-url: http://13.68.199.181:8080/job/EfraJob/
+          jenkins-url: http://13.68.199.181:8080/
           jenkins-token: 111781d593fc81a5be6445ba8bcaf0fefa
           user: "jenkins-username"
-          job-path: "job/folder_name/job/job_name"
+          job-path: "job/EfraJob"
           job-params: "{'param1': 'value1', 'param2': 'value2'}"
     - name: Get job status
       run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
