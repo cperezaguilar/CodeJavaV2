@@ -9,7 +9,7 @@ pipeline {
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "201.168.125.91:8081"
         NEXUS_REPOSITORY = "maven-snapshots"
-        NEXUS_CREDENTIAL_ID = "Nexus"
+        NEXUS_CREDENTIAL_ID = "111781d593fc81a5be6445ba8bcaf0fefa"
     }
     stages {
         stage("Clone code from GitHub") {
