@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'mvn crean install'                
+                sh 'mvn crean install'              
             }
         }
     }
