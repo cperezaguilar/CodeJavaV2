@@ -9,7 +9,7 @@ pipeline {
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "201.168.125.91:8081"
         NEXUS_REPOSITORY = "maven-snapshots"
-        NEXUS_CREDENTIAL_ID = "bb5b847c-db54-322d-8697-a160eb7c77d2"
+        NEXUS_CREDENTIAL_ID = "nexus-user-credential"
     }
     stages {
         stage("Clone code from GitHub") {
@@ -54,7 +54,7 @@ pipeline {
                             ]
                         );
                     } else {
-                        error "*** File: ${artifactPath}, could not be found error!!";
+                        error "*** File: ${artifactPath}, could not be found";
                     }
                 }
             }
