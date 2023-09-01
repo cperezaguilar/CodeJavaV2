@@ -32,40 +32,19 @@ jobs:
         restore-keys: ${{ runner.os }}-m2      
     - name: Build and test project with Maven
       run: mvn -B package --file pom.xml
-  dependency-review:     
-    outputs:
-      ok: ${{ steps.ok.outputs.ok }}     
-    concurrency:
-      group: ${{ inputs.github_workflow }}-dependency-review-${{ github.event.pull_request.number || github.ref }}
-      cancel-in-progress: true  
-    needs:
-      - build_and_test  
-    runs-on:
-      - ubuntu-latest
+  dependency-review:
+    needs: build_and_test
+    runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-        if: ${{ inputs.github_event_name != 'merge_group' && inputs.github_event_name != 'push' }}
-      - uses: amannn/action-semantic-pull-request@v5
-        if: ${{ inputs.github_event_name != 'merge_group' && inputs.github_event_name != 'push' }}
-        with:
-          requireScope: false
-          subjectPattern: (.*[a-zA-Z].*){16,}
-          subjectPatternError: |
-            https://regexper.com/#%28.*%5Ba-zA-Z%5D.*%29%7B16%2C%7D
-        env:
-          GITHUB_TOKEN: ${{ secrets.GGITHUB_TOKEN }}            
-
-      - name: dependency-review
-        if: ${{ inputs.github_event_name != 'merge_group' && inputs.github_event_name != 'push' }}
-        uses: actions/dependency-review-action@v3
-        with:
-          # GHSA-pfrx-2q88-qq97, GHSA-w5p7-h5w8-2hfq, GHSA-wcg3-cvx6-7396 are ignored because they are casued by the static Docusaurus build. Please remove when Docusaurus gets updated.
-          # GHSA-969w-q74q-9j8v, GHSA-44mr-8vmm-wjhg, GHSA-wh6w-3828-g9qf are ignored because they are transitive dependencies still used by the master branch of Substrate. Please remove when Substrate update the according dependencies.
-          # GHSA-fjx5-qpf4-xjf2 is ignored because it is a transitive dependencies still used by the master branch of ibc-proto-rs. Please remove when ibc-rs-proto updates it.
-          allow-ghsas: GHSA-pfrx-2q88-qq97, GHSA-w5p7-h5w8-2hfq, GHSA-wcg3-cvx6-7396, GHSA-969w-q74q-9j8v, GHSA-44mr-8vmm-wjhg, GHSA-wh6w-3828-g9qf, GHSA-ff4p-7xrq-q5r8, GHSA-xm67-587q-r2vw, GHSA-fjx5-qpf4-xjf2
-      - id: ok
-        run: echo "ok = true" >> "$GITHUB_OUTPUT"  
+       - name: 'Checkout Repository'
+         uses: actions/checkout@v3
+       - name: 'Dependency Review'
+         uses: actions/dependency-review-action@v3
+         with:
+            fail-on-severity: low
+            base-ref: ${{ github.event.pull_request.base.sha || 'main' }}
+            head-ref: ${{ github.event.pull_request.head.sha || github.ref }}
+            # Use comma-separated names to pass list arguments: deny-licenses: LGPL-2.0, BSD-2-Clause 
   publish-job:
       runs-on: ubuntu-latest
       needs: [dependency-review]
