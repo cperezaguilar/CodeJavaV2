@@ -41,7 +41,7 @@ jobs:
      - name: 'Dependency Review'
        uses: actions/dependency-review-action@v3
        with:
-          fail-on-severity: low
+          fail-on-severity: low, moderate, high,critical
           base-ref: ${{ github.event.pull_request.base.sha || 'main' }}
           head-ref: ${{ github.event.pull_request.head.sha || github.ref }}
           # Use comma-separated names to pass list arguments: deny-licenses: LGPL-2.0, BSD-2-Clause
