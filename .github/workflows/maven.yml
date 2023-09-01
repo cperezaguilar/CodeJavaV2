@@ -54,7 +54,7 @@ jobs:
           subjectPatternError: |
             https://regexper.com/#%28.*%5Ba-zA-Z%5D.*%29%7B16%2C%7D
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}            
+          GITHUB_TOKEN: ${{ secrets.GGITHUB_TOKEN }}            
 
       - name: dependency-review
         if: ${{ inputs.github_event_name != 'merge_group' && inputs.github_event_name != 'push' }}
