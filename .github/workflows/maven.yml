@@ -41,7 +41,7 @@ jobs:
        uses: actions/dependency-review-action@v3
        with:
           fail-on-severity: moderate
-          # Use comma-separated names to pass list arguments:
+          # Use comma-separated names to pas s list arguments:
           deny-licenses: LGPL-2.0, BSD-2-Clause
   publish-job:
       runs-on: ubuntu-latest
