@@ -1,4 +1,4 @@
-package com.ventus.cobro.model;
+package com.org.cobro.model;
 
 public class Car {
 
