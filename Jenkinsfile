@@ -53,6 +53,16 @@ pipeline {
                                 type: "pom"]
                             ]
                         );
+                        nexusPolicyEvaluation(
+                            advancedProperties: '', 
+                            enableDebugLogging: false, 
+                            failBuildOnNetworkError: false, 
+                            iqApplication: selectedApplication('CobroJava__Ventus-Technology'), 
+                            iqInstanceId: '2', 
+                            iqOrganization: '', 
+                            iqStage: 'build', 
+                            jobCredentialsId: ''
+                        );
                     } else {
                         error "*** File: ${artifactPath}, could not be found";
                     }
