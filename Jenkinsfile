@@ -69,5 +69,31 @@ pipeline {
                 }
             }
         }
+        stage("IQ Server") {
+            steps {
+                script {
+                    pom = readMavenPom file: "pom.xml";
+                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
+                    artifactPath = filesByGlob[0].path;
+                    artifactExists = fileExists artifactPath;
+                    if(artifactExists) {
+                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+                        nexusPolicyEvaluation(
+                            advancedProperties: '', 
+                            enableDebugLogging: false, 
+                            failBuildOnNetworkError: false, 
+                            iqApplication: selectedApplication('CobroJava__Ventus-Technology'), 
+                            iqInstanceId: '2', 
+                            iqOrganization: '', 
+                            iqStage: 'build', 
+                            jobCredentialsId: ''
+                        );
+                    } else {
+                        error "*** File: ${artifactPath}, could not be found";
+                    }
+                }
+            }
+        }
     }
 }
