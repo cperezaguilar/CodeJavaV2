@@ -1,4 +1,4 @@
-package com.ventus.cobro.employee;
+package com.org.cobro.employee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ventus.cobro.model.Employee;
+import com.org.cobro.model.Employee;
 
 @RestController
 public class EmployeeController {

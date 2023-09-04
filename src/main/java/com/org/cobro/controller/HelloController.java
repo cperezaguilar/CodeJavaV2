@@ -1,7 +1,7 @@
-package com.ventus.cobro.controller;
+package com.org.cobro.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ventus.cobro.model.Car;
+import com.org.cobro.model.Car;
 import org.apache.commons.text.StringSubstitutor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
