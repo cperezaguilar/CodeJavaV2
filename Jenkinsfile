@@ -15,7 +15,7 @@ pipeline {
         stage("Clone code from GitHub") {
             steps {
                 script {
-                    git branch: 'feature/release0001', url: 'https://github.com/Ventus-Technology/CobroJava';
+                    git branch: 'main', url: 'https://github.com/MTYTECH/CobroJava';
                 }
             }
         }
@@ -73,7 +73,7 @@ pipeline {
                             advancedProperties: '', 
                             enableDebugLogging: false, 
                             failBuildOnNetworkError: false, 
-                            iqApplication: selectedApplication('CobroJava__Ventus-Technology'), 
+                            iqApplication: selectedApplication('Cobrojava - Mtytech'), 
                             iqInstanceId: '2', 
                             iqOrganization: '', 
                             iqStage: 'build', 
