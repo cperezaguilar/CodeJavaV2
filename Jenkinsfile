@@ -15,7 +15,7 @@ pipeline {
         stage("Clone code from GitHub") {
             steps {
                 script {
-                    git branch: 'feature/release0001', url: 'https://github.com/Ventus-Technology/CobroJava';
+                    git branch: 'main', url: 'https://github.com/MTYTECH/CobroJava';
                 }
             }
         }
@@ -55,6 +55,32 @@ pipeline {
                         );
                     } else {
                         error "*** File: ${artifactPath}, could not be found";
+                    }
+                }
+            }
+        }
+        stage("IQ Server") {
+            steps {
+                script {
+                    pom = readMavenPom file: "pom.xml";
+                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
+                    artifactPath = filesByGlob[0].path;
+                    artifactExists = fileExists artifactPath;
+                    if(artifactExists) {
+                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+                        nexusPolicyEvaluation(
+                            advancedProperties: '', 
+                            enableDebugLogging: false, 
+                            failBuildOnNetworkError: false, 
+                            iqApplication: selectedApplication('CobroJava__MTYTECH'), 
+                            iqInstanceId: '2', 
+                            iqOrganization: '', 
+                            iqStage: 'build', 
+                            jobCredentialsId: ''
+                        );
+                    } else {
+                        error "*** File: ${artifactPath}, could not be found error ";
                     }
                 }
             }
